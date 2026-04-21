@@ -1,0 +1,10 @@
+[project]
+name = "hw01-llm-tools"
+version = "0.1.0"
+description = "HW01: Python skript pro LLM API s tool-use"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.49.0",
+    "python-dotenv>=1.0.1",
+]
