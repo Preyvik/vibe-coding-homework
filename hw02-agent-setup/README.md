@@ -4,6 +4,10 @@
 
 Nasdílet nastavení kódovacího agenta s využitím **MCP Serverů, Skills a Subagentů**. **NEPOUŽÍVAT plugins ani marketplace.** Kódovací agenti pokryti kurzem: **Codex** (OpenAI) a **Claude Code** (Anthropic).
 
+## Který agent je primární
+
+**Claude Code je můj hlavní pracovní agent — všechny custom Skills, Subagents a MCP servery jsem dělal pro něj.** Codex je v repu doložený pro úplnost (kurz oba zmiňuje), s minimální zrcadlovou konfigurací; aktivně ho nepoužívám. Pokud čtete jen jednu sekci, čtěte tu o Claude Code.
+
 ## Co je v této složce
 
 ```
