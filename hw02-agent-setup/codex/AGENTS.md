@@ -23,4 +23,4 @@ Default instructions Codex applies to every session unless a project-level `AGEN
 
 ## When the user asks about LLM provider examples
 
-The course repo at `C:/Users/tados/Claude/vibe-coding-course` follows a strict convention: providers are top-level under `1_LLM/<provider>/`, and the **same numbered subfolder means the same topic across providers** (`1_basics`, `2_multimodal`, `3_chat_history`, `4_tools`, `10_react_agent`). When porting behavior between providers, find the matching number rather than guessing. Tool-use message shapes differ per provider — consult the existing `4_tools/main-finished.py` for the canonical shape.
+The course repo (locally cloned) follows a strict convention: providers are top-level under `1_LLM/<provider>/`, and the **same numbered subfolder means the same topic across providers** (`1_basics`, `2_multimodal`, `3_chat_history`, `4_tools`, `10_react_agent`). When porting behavior between providers, find the matching number rather than guessing. Tool-use message shapes differ per provider — consult the existing `4_tools/main-finished.py` for the canonical shape.

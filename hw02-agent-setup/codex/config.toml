@@ -22,16 +22,10 @@ sandbox_mode = "workspace-write"
 inherit = "all"
 
 # ---------- MCP servers ----------
-# Codex consumes the same kind of MCP servers as Claude Code. The block below mirrors
-# the n8n-mcp server configured in Claude Code (~/.claude.json -> mcpServers).
-# Replace the env values with your own (and never commit real keys to git).
-[mcp_servers.n8n-mcp]
-command = "node"
-args = ["C:/Users/tados/Claude/N8N-MCP-Server/n8n-mcp-main/n8n-mcp-main/dist/mcp/index.js"]
-
-[mcp_servers.n8n-mcp.env]
-N8N_API_URL = "https://preyvik.app.n8n.cloud"
-# N8N_API_KEY is read from the OS environment instead of being hardcoded here.
-# Set it once with:  setx N8N_API_KEY "..."   (Windows, new shells only)
-MCP_MODE = "stdio"
-NODE_DB_PATH = "./data/nodes.db"
+# `everything` is the official reference MCP server from the Model Context
+# Protocol authors (https://github.com/modelcontextprotocol/servers). It bundles
+# example tools, prompts and resources, so it doubles as a smoke test that the
+# MCP wiring works. No API key — spawned on demand via `npx`.
+[mcp_servers.everything]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-everything"]

@@ -59,10 +59,10 @@ Výřez ze sekce `mcpServers` v `~/.claude.json`. Aktivní servery:
 
 | Server                  | Typ    | K čemu                                                                  |
 | ----------------------- | ------ | ----------------------------------------------------------------------- |
-| `n8n-mcp`               | stdio  | Lokálně buildnutý server `n8n-mcp` — vyhledávání n8n nodes/templates, validace a deploy workflowů do vlastní n8n cloud instance. |
+| `everything`            | stdio  | Referenční MCP server od autorů protokolu ([modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers/tree/main/src/everything)). Bundluje ukázkové tools, prompts a resources — slouží jako veřejně reprodukovatelná demo-konfigurace MCP. Bez API klíče, spouští se přes `npx -y @modelcontextprotocol/server-everything`. |
 | `claude.ai Google Drive`| HTTP   | Spravovaný Anthropicem (OAuth flow přes claude.ai). Read/write/search vlastního Drive obsahu. |
 
-API klíč pro `n8n-mcp` je v repu nahrazen placeholderem `<REDACTED — nastav přes systémovou proměnnou>`. Skutečný klíč si Claude/Codex přečte z OS proměnné `N8N_API_KEY`.
+Žádné API klíče v repu — `everything` je veřejný balíček, Google Drive používá OAuth spravovaný v účtu (token nikdy neopouští `claude.ai`).
 
 ### `claude/agents/llm-example-finder.md` — Subagent
 
@@ -104,7 +104,7 @@ codex login              # přihlášení přes prohlížeč (ChatGPT účet)
 - `approval_policy = "on-failure"` — Codex se ptá až když příkaz selže (kompromis mezi `untrusted` a `never`).
 - `sandbox_mode = "workspace-write"` — může editovat workspace, ale bez síťových volání.
 - `[shell_environment_policy] inherit = "all"` — dědí PATH a env z rodičovského shellu (nutné pro uv, node, atd.).
-- `[mcp_servers.n8n-mcp]` — **stejný** n8n-mcp server jako v Claude Code, takže oba agenti sdílejí jednu MCP konfiguraci. API klíč se i tady čte z OS env.
+- `[mcp_servers.everything]` — **stejný** demo MCP server jako v Claude Code, takže oba agenti sdílejí jednu MCP konfiguraci. Spouští se přes `npx`, žádný klíč.
 
 ### `codex/AGENTS.md`
 
@@ -138,34 +138,31 @@ mkdir $env:USERPROFILE\.codex -Force
 copy hw02-agent-setup\codex\config.toml  $env:USERPROFILE\.codex\config.toml
 copy hw02-agent-setup\codex\AGENTS.md    $env:USERPROFILE\.codex\AGENTS.md
 
-# API klíče (uloží se trvale, projeví se v nových shellech)
-setx ANTHROPIC_API_KEY "sk-ant-..."
-setx OPENAI_API_KEY    "sk-..."
-setx N8N_API_KEY       "eyJ..."
-
-codex login
-claude     # Claude Code už si OAuth pamatuje, jinak `claude login`
+# Auth (Claude i Codex používají vlastní OAuth flow, ne raw API klíč)
+codex login    # otevře prohlížeč, přihlaš se přes ChatGPT účet
+claude         # Claude Code si OAuth pamatuje; pokud ne, `claude /login`
 ```
 
 ## Ověření
 
 ```bash
-# Claude vidí subagent
-claude /agents
+# Claude vidí subagent (uvnitř Claude session)
+/agents
 # → měl by vypsat llm-example-finder
 
 # Claude vidí skill
-claude /
+/
 # → seznam slash commandů by měl obsahovat /new-llm-example
 
-# Claude vidí MCP server
+# Claude vidí MCP server (z terminálu)
 claude mcp list
-# → n8n-mcp: connected
+# → everything: ✓ Connected
+# → claude.ai Google Drive: ✓ Connected
 
 # Codex vidí MCP server
 codex mcp list
-# → n8n-mcp
+# → everything    enabled
 
 # Codex základní run
-codex "echo hello z Codexu"
+codex "list the providers in 1_LLM/"
 ```
