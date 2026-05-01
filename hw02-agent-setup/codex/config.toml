@@ -1,0 +1,37 @@
+# Codex CLI configuration — see https://github.com/openai/codex for full reference.
+# Documented values are conservative defaults. Override per-invocation with `-c key=value`.
+
+# Default model. Change to whichever you have access to (e.g. "gpt-5-codex", "o3", etc).
+model = "gpt-5-codex"
+
+# Approval policy controls when Codex pauses for the user before running actions.
+#   "untrusted"  — ask before any non-read action (safest)
+#   "on-failure" — only ask if a command fails
+#   "on-request" — ask only when Codex itself requests approval
+#   "never"      — never ask (risky; combine with a strict sandbox)
+approval_policy = "on-failure"
+
+# Sandbox mode for tool execution.
+#   "read-only"        — Codex can only read files
+#   "workspace-write"  — Codex can edit files inside the workspace, no network
+#   "danger-full-access" — no sandbox, full host access (use only when you know why)
+sandbox_mode = "workspace-write"
+
+# Inherit the parent shell environment so PATH, language tooling, etc. are available.
+[shell_environment_policy]
+inherit = "all"
+
+# ---------- MCP servers ----------
+# Codex consumes the same kind of MCP servers as Claude Code. The block below mirrors
+# the n8n-mcp server configured in Claude Code (~/.claude.json -> mcpServers).
+# Replace the env values with your own (and never commit real keys to git).
+[mcp_servers.n8n-mcp]
+command = "node"
+args = ["C:/Users/tados/Claude/N8N-MCP-Server/n8n-mcp-main/n8n-mcp-main/dist/mcp/index.js"]
+
+[mcp_servers.n8n-mcp.env]
+N8N_API_URL = "https://preyvik.app.n8n.cloud"
+# N8N_API_KEY is read from the OS environment instead of being hardcoded here.
+# Set it once with:  setx N8N_API_KEY "..."   (Windows, new shells only)
+MCP_MODE = "stdio"
+NODE_DB_PATH = "./data/nodes.db"

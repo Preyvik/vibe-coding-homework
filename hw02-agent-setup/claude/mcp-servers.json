@@ -1,0 +1,21 @@
+{
+  "_comment": "Výřez z ~/.claude.json (sekce mcpServers). Skutečné API klíče jsou nahrazeny placeholdery — nikdy je necommituj v plain textu.",
+  "mcpServers": {
+    "n8n-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:/Users/tados/Claude/N8N-MCP-Server/n8n-mcp-main/n8n-mcp-main/dist/mcp/index.js"
+      ],
+      "env": {
+        "N8N_API_URL": "https://preyvik.app.n8n.cloud",
+        "N8N_API_KEY": "<REDACTED — nastav přes systémovou proměnnou>",
+        "MCP_MODE": "stdio",
+        "NODE_DB_PATH": "./data/nodes.db"
+      }
+    }
+  },
+  "_managed_in_app": [
+    "claude.ai Google Drive (HTTP MCP, OAuth — konfigurace držena v účtu, ne v souboru)"
+  ]
+}
