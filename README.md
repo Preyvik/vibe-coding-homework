@@ -8,6 +8,7 @@ Odevzdávky úkolů z kurzu Vibe Coding.
 |---|---|---|
 | [hw01](hw01-llm-tools/) | Python skript pro LLM API s tool-use | ✓ |
 | [hw02](hw02-agent-setup/) | Nastavení kódovacího agenta (Claude Code + Codex, MCP, Skills, Subagenti) | ✓ |
+| [hw03](hw03-pr-review-committee/) | Supervisor multi-agent PR review (Claude Agent SDK) | ✓ |
 
 ## Konvence
 

@@ -1,0 +1,10 @@
+[project]
+name = "hw03-pr-review-committee"
+version = "0.1.0"
+description = "HW03: Supervisor multi-agent PR review (Claude Agent SDK)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "claude-agent-sdk>=0.1.0",
+    "python-dotenv>=1.0.1",
+]
