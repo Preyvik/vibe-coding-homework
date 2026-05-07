@@ -2,9 +2,12 @@
 
 ## Zadání
 
-Třetí domácí úkol z kurzu **Vibe Coding 1**: vytvořit projekt s praktickým použitím **SDK pro kódovacích agenty**, který demonstruje libovolnou orchestraci (workflow nebo multi-agent) a má praktické použití. Deadline 14. 5. 2026, max 100 bodů, odevzdání jako odkaz na GitHub.
+Třetí domácí úkol z kurzu **Vibe Coding 1**: vytvořit projekt s praktickým použitím **SDK pro kódovacího agenta**, který demonstruje libovolnou orchestraci (workflow nebo multi-agent) a má praktické použití. Deadline 14. 5. 2026, max 100 bodů, odevzdání jako odkaz na GitHub.
 
-Volba pro tento úkol: **Claude Agent SDK** (Python) + **Supervisor multi-agent** pattern + use case **PR Review Committee**.
+**Co tento projekt naplňuje z položek zadání:**
+- **Kódovací agent:** Claude Code (přes oficiální `claude-agent-sdk` pro Python).
+- **Orchestrace:** Multi-agent → **Supervisor** (jeden hlavní agent deleguje na 3 specializované sub-agenty a agreguje jejich výstupy).
+- **Praktické použití:** **PR Review Committee** — automatizovaný code review git diffu třemi paralelními specialisty (security / performance / style).
 
 ## Řešení
 
